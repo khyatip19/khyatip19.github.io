@@ -26,22 +26,48 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👩‍💻</text></svg>">
     
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">KP</a>
+                <a href="#home">
+                    <span class="logo-text">KP</span>
+                    <span class="logo-dot">.</span>
+                </a>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#home" class="nav-link active">
+                    <span class="nav-number">01.</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#about" class="nav-link">
+                    <span class="nav-number">02.</span>
+                    <span class="nav-text">About</span>
+                </a>
+                <a href="#experience" class="nav-link">
+                    <span class="nav-number">03.</span>
+                    <span class="nav-text">Experience</span>
+                </a>
+                <a href="#projects" class="nav-link">
+                    <span class="nav-number">04.</span>
+                    <span class="nav-text">Work</span>
+                </a>
+                <a href="#achievements" class="nav-link">
+                    <span class="nav-number">05.</span>
+                    <span class="nav-text">Achievements</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span class="nav-number">06.</span>
+                    <span class="nav-text">Contact</span>
+                </a>
             </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span class="bar"></span>
@@ -51,37 +77,48 @@
         </div>
     </nav>
 
-    <!-- Home Section -->
+    <!-- Social Links -->
+    <div class="social-sidebar">
+        <div class="social-links">
+            <a href="https://github.com/khyatip19" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/khyati-prajapati/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:hello@khyatiprajapati.dev" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <div class="social-line"></div>
+    </div>
+
+    <!-- Email Sidebar -->
+    <div class="email-sidebar">
+        <div class="email-link">
+            <a href="mailto:hello@khyatiprajapati.dev">hello@khyatiprajapati.dev</a>
+        </div>
+        <div class="email-line"></div>
+    </div>
+
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        Hi, I'm <span class="highlight">Khyati Prajapati</span>
-                    </h1>
-                    <p class="hero-subtitle">Cloud/DevOps Engineer & Full Stack Developer</p>
+                <div class="hero-intro">
+                    <p class="hero-greeting">Hi, my name is</p>
+                    <h1 class="hero-name">Khyati Prajapati.</h1>
+                    <h2 class="hero-title">I build things for the cloud.</h2>
                     <p class="hero-description">
-                        Passionate about cloud technologies, DevOps practices, and creating accessible web applications. 
-                        I specialize in building scalable solutions and have experience in full stack web development, 
-                        mobile applications, and web accessibility.
+                        I'm a Cloud/DevOps engineer specializing in building scalable, 
+                        accessible digital experiences. Currently focused on creating 
+                        robust infrastructure and full-stack applications with a passion 
+                        for web accessibility. Winner of 3 hackathons and passionate about innovation.
                     </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-outline">Check out my work!</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="profile-card">
-                        <img src="https://avatars.githubusercontent.com/u/53784458?v=4" alt="Khyati Prajapati" class="profile-img">
-                        <div class="profile-info">
-                            <h3>Khyati Prajapati</h3>
-                            <p>Cloud/DevOps Engineer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-arrow"></div>
             </div>
         </div>
     </section>
@@ -90,57 +127,157 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know more about my background and expertise</p>
+                <h2 class="section-title">
+                    <span class="section-number">01.</span>
+                    About Me
+                </h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>
-                        I'm a passionate Cloud/DevOps engineer with a strong foundation in full stack web development 
-                        and mobile application development. My journey in technology has been driven by a desire to 
-                        create efficient, scalable, and accessible solutions.
-                    </p>
-                    <p>
-                        With expertise in cloud platforms, containerization, CI/CD pipelines, and modern web technologies, 
-                        I enjoy tackling complex challenges and implementing best practices in software development and 
-                        infrastructure management.
-                    </p>
-                    <p>
-                        I'm particularly passionate about web accessibility, ensuring that digital experiences are 
-                        inclusive and usable by everyone. This commitment to accessibility extends to all my projects, 
-                        from web applications to mobile apps.
-                    </p>
+                    <div class="about-paragraphs">
+                        <p>
+                            Hello! I'm Khyati, a passionate Cloud/DevOps engineer who enjoys 
+                            creating things that live on the internet. My interest in cloud 
+                            technologies started back in college when I discovered the power 
+                            of scalable infrastructure and automation.
+                        </p>
+                        <p>
+                            Fast-forward to today, and I've had the privilege of working on 
+                            various projects ranging from full-stack web applications to 
+                            mobile apps, always with a focus on accessibility and user experience. 
+                            I've also been fortunate to win 3 hackathons, which has fueled my 
+                            passion for innovative problem-solving.
+                        </p>
+                        <p>
+                            My main focus these days is building robust cloud infrastructure, 
+                            implementing DevOps best practices, and creating accessible web 
+                            applications that provide great user experiences for everyone.
+                        </p>
+                        <p>Here are a few technologies I've been working with recently:</p>
+                    </div>
+                    <div class="tech-list">
+                        <ul>
+                            <li>JavaScript (ES6+)</li>
+                            <li>Python</li>
+                            <li>Node.js</li>
+                            <li>React</li>
+                            <li>AWS</li>
+                            <li>Docker</li>
+                        </ul>
+                        <ul>
+                            <li>Kubernetes</li>
+                            <li>Terraform</li>
+                            <li>CI/CD</li>
+                            <li>MongoDB</li>
+                            <li>PostgreSQL</li>
+                            <li>Web Accessibility</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Cloud & DevOps</h3>
-                        <div class="skills">
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Azure</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">Kubernetes</span>
-                            <span class="skill-tag">CI/CD</span>
-                            <span class="skill-tag">Terraform</span>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="https://avatars.githubusercontent.com/u/53784458?v=4" alt="Khyati Prajapati" class="about-img">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">02.</span>
+                    Where I've Worked & Studied
+                </h2>
+            </div>
+            <div class="experience-content">
+                <div class="experience-tabs">
+                    <button class="tab-button active" data-tab="work">Professional Experience</button>
+                    <button class="tab-button" data-tab="education">Education</button>
+                </div>
+                
+                <div class="tab-content active" id="work-content">
+                    <div class="experience-list">
+                        <!-- Add your work experience here -->
+                        <div class="experience-item">
+                            <h3 class="experience-title">
+                                Cloud/DevOps Engineer <span class="experience-company">@ Your Company</span>
+                            </h3>
+                            <p class="experience-date">January 2023 - Present</p>
+                            <ul class="experience-details">
+                                <li>Designed and implemented scalable cloud infrastructure using AWS services</li>
+                                <li>Automated deployment pipelines using CI/CD tools, reducing deployment time by 60%</li>
+                                <li>Collaborated with development teams to optimize application performance and reliability</li>
+                                <li>Implemented monitoring and logging solutions for better system observability</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <h3 class="experience-title">
+                                Full Stack Developer <span class="experience-company">@ Previous Company</span>
+                            </h3>
+                            <p class="experience-date">June 2021 - December 2022</p>
+                            <ul class="experience-details">
+                                <li>Developed responsive web applications using React, Node.js, and MongoDB</li>
+                                <li>Implemented web accessibility standards (WCAG 2.1) across all projects</li>
+                                <li>Built RESTful APIs and integrated third-party services</li>
+                                <li>Mentored junior developers and conducted code reviews</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <h3 class="experience-title">
+                                Software Developer Intern <span class="experience-company">@ Startup Company</span>
+                            </h3>
+                            <p class="experience-date">Summer 2020</p>
+                            <ul class="experience-details">
+                                <li>Contributed to mobile app development using React Native</li>
+                                <li>Participated in agile development processes and daily standups</li>
+                                <li>Implemented user interface components and integrated APIs</li>
+                                <li>Gained experience in version control and collaborative development</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h3>Development</h3>
-                        <div class="skills">
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">HTML/CSS</span>
+                </div>
+                
+                <div class="tab-content" id="education-content">
+                    <div class="education-list">
+                        <div class="education-item">
+                            <h3 class="education-degree">
+                                Bachelor of Science in Computer Science
+                            </h3>
+                            <p class="education-school">Your University Name</p>
+                            <p class="education-date">2018 - 2022</p>
+                            <div class="education-details">
+                                <p><strong>Relevant Coursework:</strong> Data Structures & Algorithms, Database Systems, 
+                                Software Engineering, Computer Networks, Cloud Computing, Web Development</p>
+                                <p><strong>GPA:</strong> 3.8/4.0</p>
+                                <p><strong>Activities:</strong> Computer Science Club, Hackathon Organizer, 
+                                Women in Tech Society</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Specializations</h3>
-                        <div class="skills">
-                            <span class="skill-tag">Web Accessibility</span>
-                            <span class="skill-tag">Mobile Development</span>
-                            <span class="skill-tag">Database Design</span>
-                            <span class="skill-tag">API Development</span>
+                        
+                        <div class="education-item">
+                            <h3 class="education-degree">
+                                Relevant Certifications
+                            </h3>
+                            <div class="certifications">
+                                <div class="cert-item">
+                                    <i class="fab fa-aws"></i>
+                                    <span>AWS Certified Solutions Architect</span>
+                                </div>
+                                <div class="cert-item">
+                                    <i class="fab fa-docker"></i>
+                                    <span>Docker Certified Associate</span>
+                                </div>
+                                <div class="cert-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Kubernetes Administrator (CKA)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,31 +289,121 @@
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">My Projects</h2>
-                <p class="section-subtitle">A showcase of my recent work and contributions</p>
+                <h2 class="section-title">
+                    <span class="section-number">03.</span>
+                    Some Things I've Built
+                </h2>
             </div>
-            <div class="projects-grid" id="projects-grid">
+            <div class="projects-list" id="projects-list">
                 <!-- Projects will be loaded dynamically -->
-                <div class="loading">
-                    <div class="spinner"></div>
+                <div class="loading-projects">
+                    <div class="loading-spinner"></div>
                     <p>Loading projects...</p>
                 </div>
+            </div>
+            <div class="projects-archive">
+                <a href="https://github.com/khyatip19" target="_blank" rel="noopener noreferrer" class="archive-link">
+                    View the archive
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Gallery</h2>
-                <p class="section-subtitle">Visual highlights and project screenshots</p>
+                <h2 class="section-title">
+                    <span class="section-number">04.</span>
+                    Achievements & Recognition
+                </h2>
             </div>
-            <div class="gallery-content">
-                <div class="gallery-placeholder">
-                    <i class="fas fa-images"></i>
-                    <h3>Coming Soon</h3>
-                    <p>Project screenshots and visual content will be added here</p>
+            <div class="achievements-content">
+                <div class="achievements-grid">
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3 class="achievement-title">Hackathon Winner #1</h3>
+                            <p class="achievement-event">TechCrunch Disrupt Hackathon 2023</p>
+                            <p class="achievement-description">
+                                Won first place for developing an AI-powered accessibility tool that helps 
+                                visually impaired users navigate web applications. Built using React, 
+                                Node.js, and machine learning APIs.
+                            </p>
+                            <div class="achievement-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>AI/ML</span>
+                                <span>Accessibility</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3 class="achievement-title">Hackathon Winner #2</h3>
+                            <p class="achievement-event">AWS Cloud Innovation Challenge 2022</p>
+                            <p class="achievement-description">
+                                Second place for creating a serverless disaster response platform that 
+                                coordinates emergency services using real-time data and cloud infrastructure. 
+                                Implemented using AWS Lambda, DynamoDB, and IoT services.
+                            </p>
+                            <div class="achievement-tech">
+                                <span>AWS</span>
+                                <span>Serverless</span>
+                                <span>IoT</span>
+                                <span>Real-time Data</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <h3 class="achievement-title">Hackathon Winner #3</h3>
+                            <p class="achievement-event">Women in Tech Innovation Summit 2021</p>
+                            <p class="achievement-description">
+                                First place for developing a mobile app that connects women entrepreneurs 
+                                with mentors and resources. Featured user authentication, real-time chat, 
+                                and location-based matching.
+                            </p>
+                            <div class="achievement-tech">
+                                <span>React Native</span>
+                                <span>Firebase</span>
+                                <span>Real-time Chat</span>
+                                <span>Mobile Development</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="other-achievements">
+                    <h3 class="other-achievements-title">Other Notable Achievements</h3>
+                    <div class="other-achievements-list">
+                        <div class="other-achievement">
+                            <i class="fas fa-star"></i>
+                            <span>Speaker at DevOps Conference 2023 - "Implementing Accessibility in CI/CD Pipelines"</span>
+                        </div>
+                        <div class="other-achievement">
+                            <i class="fas fa-users"></i>
+                            <span>Mentored 15+ junior developers through coding bootcamp programs</span>
+                        </div>
+                        <div class="other-achievement">
+                            <i class="fas fa-code"></i>
+                            <span>Contributed to 5+ open source projects with focus on accessibility</span>
+                        </div>
+                        <div class="other-achievement">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Dean's List for 4 consecutive semesters</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -186,52 +413,20 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's connect and discuss opportunities</p>
+                <h2 class="section-title">
+                    <span class="section-number">05.</span>
+                    What's Next?
+                </h2>
             </div>
             <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>LinkedIn</h3>
-                            <p>Connect with me professionally</p>
-                            <a href="https://www.linkedin.com/in/khyati-prajapati/" target="_blank" rel="noopener noreferrer">
-                                linkedin.com/in/khyati-prajapati
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>GitHub</h3>
-                            <p>Check out my code and projects</p>
-                            <a href="https://github.com/khyatip19" target="_blank" rel="noopener noreferrer">
-                                github.com/khyatip19
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+                <h3 class="contact-title">Get In Touch</h3>
+                <p class="contact-description">
+                    Although I'm not currently looking for any new opportunities, 
+                    my inbox is always open. Whether you have a question or just 
+                    want to say hi, I'll try my best to get back to you!
+                </p>
+                <div class="contact-cta">
+                    <a href="mailto:hello@khyatiprajapati.dev" class="btn btn-outline">Say Hello</a>
                 </div>
             </div>
         </div>
@@ -241,8 +436,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Khyati Prajapati. All rights reserved.</p>
-                <div class="social-links">
+                <p>Built by Khyati Prajapati</p>
+                <div class="footer-links">
                     <a href="https://github.com/khyatip19" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i>
                     </a>
