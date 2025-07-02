@@ -6,6 +6,8 @@ const navLinks = document.querySelectorAll('.nav-link');
 const projectsList = document.getElementById('projects-list');
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 
 // GitHub API Configuration
 const GITHUB_USERNAME = 'khyatip19';
@@ -15,30 +17,40 @@ const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
 document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeCursor();
-    initializeTabs();
+    initializeTheme();
     loadProjects();
     initializeScrollEffects();
     initializeAnimations();
 });
 
-// Tab functionality for experience section
-function initializeTabs() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+// Theme toggle functionality
+function initializeTheme() {
+    // Check for saved theme preference or default to 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    
+    // Add click event listener to theme toggle button
+    themeToggle.addEventListener('click', toggleTheme);
+}
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetTab = button.getAttribute('data-tab');
-            
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Add active class to clicked button and corresponding content
-            button.classList.add('active');
-            document.getElementById(`${targetTab}-content`).classList.add('active');
-        });
-    });
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Update icon based on theme
+    if (theme === 'light') {
+        themeIcon.className = 'fas fa-moon';
+        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    } else {
+        themeIcon.className = 'fas fa-sun';
+        themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    }
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
 }
 
 // Custom cursor functionality
@@ -136,90 +148,102 @@ function updateActiveNavLink() {
 
 // Load projects from GitHub API
 async function loadProjects() {
+    const githubProjectsContainer = document.getElementById('projects-list');
+    if (!githubProjectsContainer) return;
+    
     try {
         const response = await fetch(GITHUB_API_URL + '?sort=updated&per_page=100');
         const repos = await response.json();
         
         // Filter out forked repositories and select interesting projects
-        const filteredRepos = repos.filter(repo => !repo.fork && repo.name !== GITHUB_USERNAME)
-                                  .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                                  .slice(0, 3); // Show top 3 featured projects
+        const filteredRepos = repos.filter(repo => 
+            !repo.fork && 
+            repo.name !== GITHUB_USERNAME &&
+            repo.name !== 'khyatip19.github.io' && // Exclude portfolio repo
+            repo.description // Only include repos with descriptions
+        ).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+         .slice(0, 6); // Show top 6 other projects
 
-        displayProjects(filteredRepos);
+        displayGitHubProjects(filteredRepos);
     } catch (error) {
         console.error('Error loading projects:', error);
         displayProjectsError();
     }
 }
 
-// Display projects in the new layout
-function displayProjects(repos) {
+// Display GitHub projects in grid layout
+function displayGitHubProjects(repos) {
+    const githubProjectsContainer = document.getElementById('projects-list');
+    
     if (repos.length === 0) {
-        projectsList.innerHTML = `
+        githubProjectsContainer.innerHTML = `
             <div class="no-projects">
-                <p>No projects found. Check back soon!</p>
+                <p>More projects coming soon! Check out my GitHub for the latest updates.</p>
+                <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                    View GitHub Profile
+                </a>
             </div>
         `;
         return;
     }
 
-    const projectsHTML = repos.map((repo, index) => createFeaturedProject(repo, index)).join('');
-    projectsList.innerHTML = projectsHTML;
+    const projectsHTML = repos.map(repo => createProjectCard(repo)).join('');
+    githubProjectsContainer.innerHTML = `
+        <div class="projects-grid">
+            ${projectsHTML}
+        </div>
+    `;
 
-    // Add animation to project items
-    const projectItems = document.querySelectorAll('.project-item');
-    projectItems.forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.2}s`;
-        item.classList.add('fade-in-up');
+    // Add animation to project cards
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('fade-in-up');
     });
 }
 
-// Create featured project card
-function createFeaturedProject(repo, index) {
-    const description = repo.description || 'A project showcasing modern development practices and clean code architecture.';
+// Create project card for GitHub projects
+function createProjectCard(repo) {
+    const description = repo.description || 'A project showcasing modern development practices.';
     const language = repo.language || 'JavaScript';
     
     // Get main technologies based on repo name and language
     const technologies = getTechnologies(repo.name, language);
-    const techList = technologies.map(tech => `<li>${tech}</li>`).join('');
-    
-    // Alternate layout for visual interest
-    const isEven = index % 2 === 0;
+    const techList = technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
     
     return `
-        <div class="project-item">
-            <div class="project-content">
-                <div>
-                    <p class="project-overline">Featured Project</p>
-                    <h3 class="project-title">
-                        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-                            ${formatProjectName(repo.name)}
+        <div class="project-card">
+            <div class="project-card-header">
+                <div class="project-card-icon">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <div class="project-card-links">
+                    <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    ${repo.homepage ? `
+                        <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" aria-label="External Link">
+                            <i class="fas fa-external-link-alt"></i>
                         </a>
-                    </h3>
-                    <div class="project-description">
-                        <p>${description}</p>
-                    </div>
-                    <ul class="project-tech-list">
-                        ${techList}
-                    </ul>
-                    <div class="project-links">
-                        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        ${repo.homepage ? `
-                            <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" aria-label="External Link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        ` : ''}
-                    </div>
+                    ` : ''}
                 </div>
             </div>
-            <div class="project-image">
-                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-                    <img src="https://via.placeholder.com/600x400/64ffda/0a192f?text=${encodeURIComponent(formatProjectName(repo.name))}" 
-                         alt="${formatProjectName(repo.name)}" 
-                         class="project-img">
-                </a>
+            <div class="project-card-body">
+                <h3 class="project-card-title">
+                    <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+                        ${formatProjectName(repo.name)}
+                    </a>
+                </h3>
+                <p class="project-card-description">${description}</p>
+            </div>
+            <div class="project-card-footer">
+                <div class="project-tech-tags">
+                    ${techList}
+                </div>
+                <div class="project-stats">
+                    ${repo.stargazers_count > 0 ? `<span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>` : ''}
+                    ${repo.forks_count > 0 ? `<span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>` : ''}
+                </div>
             </div>
         </div>
     `;
@@ -470,3 +494,72 @@ window.addEventListener('scroll', debounce(() => {
         }
     });
 }, 10));
+
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    
+    // Update icon based on current theme
+    updateThemeIcon(currentTheme);
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+}
+
+function updateThemeIcon(theme) {
+    const themeIcon = document.getElementById('theme-icon');
+    if (themeIcon) {
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+}
+
+// Initialize theme toggle when DOM is loaded
+document.addEventListener('DOMContentLoaded', initThemeToggle);
+
+// Toggle Experience Section
+function toggleExperiences() {
+    const hiddenSection = document.getElementById('hidden-experiences');
+    const toggleBtn = document.getElementById('experience-toggle');
+    const btnText = toggleBtn.querySelector('.btn-text');
+    const btnIcon = toggleBtn.querySelector('.btn-icon');
+    
+    if (hiddenSection.style.display === 'none' || hiddenSection.style.display === '') {
+        hiddenSection.style.display = 'block';
+        btnText.textContent = 'View Less Experiences';
+        toggleBtn.classList.add('expanded');
+    } else {
+        hiddenSection.style.display = 'none';
+        btnText.textContent = 'View More Experiences';
+        toggleBtn.classList.remove('expanded');
+    }
+}
+
+// Toggle Education Section
+function toggleEducation() {
+    const hiddenSection = document.getElementById('hidden-education');
+    const toggleBtn = document.getElementById('education-toggle');
+    const btnText = toggleBtn.querySelector('.btn-text');
+    const btnIcon = toggleBtn.querySelector('.btn-icon');
+    
+    if (hiddenSection.style.display === 'none' || hiddenSection.style.display === '') {
+        hiddenSection.style.display = 'block';
+        btnText.textContent = 'Hide Earlier Education';
+        toggleBtn.classList.add('expanded');
+    } else {
+        hiddenSection.style.display = 'none';
+        btnText.textContent = 'View Earlier Education';
+        toggleBtn.classList.remove('expanded');
+    }
+}
