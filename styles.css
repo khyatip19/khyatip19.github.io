@@ -32,19 +32,48 @@
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
     --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.3);
     
-    /* Typography - Increased sizes */
+    /* Typography - Responsive sizes */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
     
-    --text-xs: 0.8rem;
-    --text-sm: 0.95rem;
-    --text-base: 1.1rem;
-    --text-lg: 1.25rem;
-    --text-xl: 1.4rem;
-    --text-2xl: 1.65rem;
-    --text-3xl: 2rem;
-    --text-4xl: 2.5rem;
-    --text-5xl: 3.2rem;
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    
+    /* Responsive spacing */
+    --container-padding: var(--space-6);
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease-out;
+    --transition-base: 0.25s ease-out;
+    --transition-slow: 0.4s ease-out;
     
     /* Spacing */
     --space-1: 0.25rem;
@@ -267,7 +296,7 @@ a:hover {
     height: var(--nav-height);
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 var(--space-8);
+    padding: 0 var(--container-padding);
 }
 
 .nav-logo {
@@ -278,6 +307,7 @@ a:hover {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     flex-shrink: 0;
+    min-width: fit-content;
 }
 
 .nav-menu {
@@ -287,7 +317,21 @@ a:hover {
     list-style: none;
     flex-grow: 1;
     justify-content: center;
-    margin: 0 var(--space-8);
+    margin: 0 var(--space-6);
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-controls {
@@ -295,6 +339,7 @@ a:hover {
     align-items: center;
     gap: var(--space-4);
     flex-shrink: 0;
+    min-width: fit-content;
 }
 
 .nav-link {
@@ -313,6 +358,52 @@ a:hover {
 .nav-link.active {
     color: var(--accent-primary);
     background: var(--bg-hover);
+}
+
+.resume-link {
+    background: var(--accent-gradient) !important;
+    color: white !important;
+    margin-left: var(--space-2);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.resume-link:hover {
+    background: var(--accent-primary) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.resume-link i {
+    margin-right: var(--space-1);
+    font-size: var(--text-sm);
+}
+
+/* Resume link responsive adjustments */
+@media (max-width: 1199px) and (min-width: 1024px) {
+    .resume-link {
+        margin-left: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.8rem;
+    }
+    
+    .resume-link i {
+        font-size: 0.8rem;
+        margin-right: 4px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .resume-link {
+        margin-left: var(--space-1);
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.75rem;
+    }
+    
+    .resume-link i {
+        font-size: 0.7rem;
+        margin-right: 2px;
+    }
 }
 
 .nav-controls {
@@ -1418,27 +1509,313 @@ a:hover {
 .project-card:nth-child(6) { animation: slideInUp 0.6s ease-out 0.6s both; }
 .project-card:nth-child(7) { animation: slideInUp 0.6s ease-out 0.7s both; }
 
-/* Responsive Projects */
-@media (max-width: 768px) {
+/* Responsive Design */
+
+/* Large Desktop (1440px+) - Keep original styling */
+@media (min-width: 1440px) {
+    :root {
+        --text-base: 1.1rem;
+        --text-lg: 1.3rem;
+        --text-xl: 1.5rem;
+        --text-2xl: 1.8rem;
+        --text-3xl: 2.2rem;
+        --container-padding: var(--space-8);
+    }
+    
+    .nav-logo {
+        font-size: var(--text-2xl);
+    }
+    
+    .nav-menu {
+        gap: var(--space-8);
+        margin: 0 var(--space-8);
+    }
+    
+    .nav-controls {
+        gap: var(--space-4);
+    }
+}
+
+/* Standard Desktop (1200px - 1439px) - Keep good spacing */
+@media (max-width: 1439px) and (min-width: 1200px) {
+    :root {
+        --container-padding: var(--space-6);
+    }
+    
+    .nav-logo {
+        font-size: var(--text-2xl);
+    }
+    
+    .nav-menu {
+        gap: var(--space-6);
+        margin: 0 var(--space-6);
+    }
+    
+    .nav-controls {
+        gap: var(--space-4);
+    }
+}
+
+/* Laptop (1024px - 1199px) - Dell XPS 13 optimized with smaller fonts */
+@media (max-width: 1199px) and (min-width: 1024px) {
+    :root {
+        --text-xs: 0.65rem;
+        --text-sm: 0.75rem;
+        --text-base: 0.8rem;
+        --text-lg: 0.9rem;
+        --text-xl: 1rem;
+        --text-2xl: 1.2rem;
+        --text-3xl: 1.4rem;
+        --text-4xl: 1.7rem;
+        --text-5xl: 2.2rem;
+        --container-padding: var(--space-2);
+    }
+    
+    .nav-container {
+        padding: 0 var(--space-2);
+    }
+    
+    .nav-logo {
+        font-size: var(--text-base);
+    }
+    
+    .nav-menu {
+        gap: var(--space-1);
+        margin: 0 var(--space-1);
+    }
+    
+    .nav-link {
+        padding: var(--space-1);
+        font-size: 0.65rem;
+    }
+    
+    .nav-controls {
+        gap: var(--space-1);
+    }
+    
+    .resume-link {
+        margin-left: 2px;
+        padding: var(--space-1);
+        font-size: 0.6rem;
+    }
+    
+    .resume-link i {
+        font-size: 0.6rem;
+        margin-right: 1px;
+    }
+    
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+    
+    /* Adjust hero section for laptops */
+    .hero-name {
+        font-size: var(--text-4xl);
+    }
+    
+    .hero-title {
+        font-size: var(--text-2xl);
+    }
+    
+    .hero-description {
+        font-size: var(--text-base);
+    }
+    
+    /* Adjust section titles */
+    .section-title {
+        font-size: var(--text-3xl);
+    }
+    
+    /* Adjust card content */
+    .experience-title,
+    .education-degree,
+    .project-card-title,
+    .achievement-title {
+        font-size: var(--text-xl);
+    }
+    
+    .experience-date,
+    .education-date,
+    .achievement-event {
+        font-size: var(--text-sm);
+    }
+    
+    .experience-details li,
+    .education-details p,
+    .project-card-description,
+    .achievement-description {
+        font-size: var(--text-sm);
+    }
+}
+
+/* Extra compact for very tight screens */
+@media (max-width: 1280px) and (min-width: 1024px) {
+    .nav-link .nav-text {
+        font-size: 0.6rem;
+    }
+    
+    .resume-link .nav-text {
+        font-size: 0.55rem;
+    }
+}
+
+/* Small Laptop (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    :root {
+        --container-padding: var(--space-4);
+        --text-base: 0.9rem;
+        --text-lg: 1rem;
+        --text-xl: 1.1rem;
+        --text-2xl: 1.3rem;
+        --text-3xl: 1.6rem;
+    }
+    
+    .nav-container {
+        padding: 0 var(--space-4);
+    }
+    
+    .nav-menu {
+        gap: var(--space-3);
+        margin: 0 var(--space-3);
+    }
+    
+    .nav-link {
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.8rem;
+    }
+    
+    .nav-logo {
+        font-size: var(--text-lg);
+    }
+    
+    .resume-link {
+        margin-left: var(--space-1);
+        padding: var(--space-1) var(--space-2);
+        font-size: 0.75rem;
+    }
+    
+    .hero-name {
+        font-size: var(--text-4xl);
+    }
+    
+    .hero-title {
+        font-size: var(--text-2xl);
+    }
+    
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--space-6);
     }
+}
+
+/* Tablet (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+    :root {
+        --container-padding: var(--space-3);
+    }
     
-    .project-card-footer {
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-container {
+        justify-content: space-between;
+        padding: 0 var(--space-3);
+    }
+    
+    .hero-cta {
         flex-direction: column;
-        align-items: flex-start;
         gap: var(--space-3);
+        align-items: center;
     }
     
-    .project-tech-logos {
-        justify-content: center;
+    .hero-cta .btn {
         width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+
+/* Mobile (320px - 480px) */
+@media (max-width: 480px) {
+    :root {
+        --container-padding: var(--space-2);
+        --text-base: 0.85rem;
+        --text-lg: 0.95rem;
+        --text-xl: 1rem;
+        --text-2xl: 1.2rem;
+        --text-3xl: 1.4rem;
+        --nav-height: 60px;
     }
     
-    .project-stats {
-        justify-content: center;
-        width: 100%;
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-container {
+        padding: 0 var(--space-2);
+    }
+    
+    .nav-logo {
+        font-size: var(--text-lg);
+    }
+    
+    .hero-name {
+        font-size: var(--text-3xl);
+    }
+    
+    .hero-title {
+        font-size: var(--text-xl);
+    }
+    
+    .hero-description {
+        font-size: var(--text-sm);
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .achievement-tile {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-4);
+        padding: var(--space-4);
+    }
+    
+    .achievement-header {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+    }
+}
+
+/* Small Mobile (max 319px) */
+@media (max-width: 319px) {
+    :root {
+        --container-padding: var(--space-1);
+        --text-base: 0.8rem;
+        --text-sm: 0.75rem;
+        --nav-height: 50px;
+    }
+    
+    .nav-container {
+        padding: 0 var(--space-1);
+    }
+    
+    .nav-controls {
+        gap: var(--space-1);
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }
 
@@ -1929,8 +2306,9 @@ a:hover {
 
 .other-achievements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-4);
+    align-items: start;
 }
 
 .other-achievement-tile {
@@ -1942,6 +2320,7 @@ a:hover {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     transition: all var(--transition-fast);
+    height: 100%;
 }
 
 .other-achievement-tile:hover {
@@ -1955,13 +2334,56 @@ a:hover {
     font-size: var(--text-lg);
     margin-top: 2px;
     flex-shrink: 0;
+    width: 20px;
+    text-align: center;
 }
 
 .other-achievement-tile span {
     color: var(--text-secondary);
     line-height: 1.5;
     font-size: var(--text-sm);
+    flex-grow: 1;
 }
+
+/* Responsive adjustments for different counts */
+@media (min-width: 1200px) {
+    .other-achievements-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .other-achievements-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+    
+    .other-achievement-tile {
+        padding: var(--space-3);
+    }
+}
+
+/* Handle different numbers of items gracefully */
+.other-achievements-grid:has(.other-achievement-tile:nth-child(1):last-child) {
+    /* Single item - center it */
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.other-achievements-grid:has(.other-achievement-tile:nth-child(2):last-child) {
+    /* Two items - make them wider */
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.other-achievements-grid:has(.other-achievement-tile:nth-child(3):last-child) {
+    /* Three items - nice row */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* For 4+ items, use the default auto-fit behavior */
 
 /* Responsive Achievements */
 @media (max-width: 768px) {
